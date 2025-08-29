@@ -29,19 +29,39 @@ class RegisterView(APIView):
     parser_classes = [JSONParser, MultiPartParser, FormParser]
 
     def post(self, request):
+        print("=== Registration Debug ===")
+        print("Raw data:", dict(request.data))
+        print("Files:", dict(request.FILES))
+        
         data = request.data.copy()
 
+        # Handle multipart form data - extract single values from lists
+        processed_data = {}
+        for key, value in data.items():
+            if key != 'cover':  # Don't process file field
+                if isinstance(value, list) and len(value) == 1:
+                    processed_data[key] = value[0]
+                else:
+                    processed_data[key] = value
+
         # Normalize likes if it came as a string (multipart)
-        if "likes" in data and not isinstance(data.get("likes"), list):
+        if "likes" in processed_data and not isinstance(processed_data.get("likes"), list):
+            print("Processing likes:", processed_data.get("likes"))
             try:
-                data["likes"] = _normalize_likes(data.get("likes"))
+                processed_data["likes"] = _normalize_likes(processed_data.get("likes"))
+                print("Normalized likes:", processed_data["likes"])
             except Exception as e:
+                print("Likes normalization error:", str(e))
                 return Response({"likes": [str(e)]}, status=400)
 
         cover_file = request.FILES.get("cover")
 
-        ser = RegisterFullSerializer(data=data)
-        ser.is_valid(raise_exception=True)
+        print("Final data before serializer:", processed_data)
+        ser = RegisterFullSerializer(data=processed_data)
+        if not ser.is_valid():
+            print("Serializer errors:", ser.errors)
+            return Response(ser.errors, status=400)
+        
         user = ser.save()
 
         # Save cover if provided

@@ -16,7 +16,9 @@ export const authAPI = {
     // Add all form fields
     Object.keys(userData).forEach(key => {
       if (key === 'likes') {
-        formData.append(key, JSON.stringify(userData[key]));
+        // Send likes as comma-separated string, or empty string if no likes
+        const likesValue = userData[key] && userData[key].length > 0 ? userData[key].join(',') : '';
+        formData.append(key, likesValue);
       } else if (key === 'cover' && userData[key]) {
         formData.append(key, userData[key]);
       } else if (userData[key] !== null && userData[key] !== undefined) {
@@ -47,13 +49,13 @@ export const authAPI = {
 
 // Dating API calls
 export const datingAPI = {
-  getFeed: () => axios.get(`${BASE_URL}/feed/`, {
+  getUsers: () => axios.get(`${BASE_URL}/dating/feed/`, {
     headers: getAuthHeaders(),
   }),
   
-  swipe: (targetId, action) => axios.post(`${BASE_URL}/swipe/`, {
-    target_id: targetId,
-    action: action, // 'like' or 'pass'
+  interact: (targetUserId, interactionType) => axios.post(`${BASE_URL}/dating/swipe/`, {
+    target_id: targetUserId,
+    action: interactionType, // 'like' or 'pass'
   }, {
     headers: {
       ...getAuthHeaders(),
@@ -61,7 +63,7 @@ export const datingAPI = {
     },
   }),
   
-  getMatches: () => axios.get(`${BASE_URL}/matches/`, {
+  getMatches: () => axios.get(`${BASE_URL}/dating/matches/`, {
     headers: getAuthHeaders(),
   }),
 };

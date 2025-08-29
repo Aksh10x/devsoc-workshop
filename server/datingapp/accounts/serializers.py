@@ -73,8 +73,8 @@ class RegisterFullSerializer(serializers.ModelSerializer):
     birth_date = serializers.DateField(required=True)
     likes = serializers.ListField(
         child=serializers.CharField(),
-        required=True,                 # <-- now required
-        allow_empty=False              # <-- must not be empty
+        required=False,                # <-- now optional
+        allow_empty=True               # <-- allow empty list
     )
 
     # Optional (keep optional)

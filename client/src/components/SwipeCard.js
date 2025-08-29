@@ -70,7 +70,7 @@ const SwipeCard = () => {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const response = await datingAPI.getFeed();
+      const response = await datingAPI.getUsers();
       setUsers(response.data);
       setCurrentIndex(0);
     } catch (error) {
@@ -87,7 +87,7 @@ const SwipeCard = () => {
     setExitDirection(direction);
     
     try {
-      const response = await datingAPI.swipe(targetUserId, action);
+      const response = await datingAPI.interact(targetUserId, action);
       
       if (response.data.matched) {
         setMatchedUser(users[currentIndex]);
