@@ -3,7 +3,8 @@
 Full-stack dating app for DevSoc IIT KGP workshop.
 
 ## Quick Start
-
+### Run the commands given below in a bash terminal
+&nbsp;&nbsp; [How to setup a Bash terminal in Windows](https://stackoverflow.com/questions/42606837/how-do-i-use-bash-on-windows-from-the-visual-studio-code-integrated-terminal)
 ### How to clone a github repository.
 1. **Install Git**: [Click Here](https://github.com/git-guides/install-git)
 2. **Clone a repository**: [Click Here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
