@@ -83,6 +83,7 @@ class RegisterView(APIView):
             {"user": MeSerializer(user).data, "access": str(refresh.access_token), "refresh": str(refresh)},
             status=status.HTTP_201_CREATED,
         )
+    # Handles full signup (profile + optional cover image) and returns JWT tokens
 
 class MeView(generics.RetrieveUpdateAPIView):
     """
@@ -93,6 +94,7 @@ class MeView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.request.user
+    # Retrieve or update the current authenticated user's profile
 
 class UploadView(APIView):
     """
@@ -121,3 +123,4 @@ class UploadView(APIView):
             request.user.save(update_fields=["cover_image_url"])
 
         return Response({"url": abs_url}, status=status.HTTP_201_CREATED)
+    # Simple authenticated multipart file upload endpoint (optionally set as cover)

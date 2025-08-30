@@ -28,6 +28,7 @@ def _opposite_gender_qs(me):
     if desired:
         qs = qs.filter(gender=desired)
     return qs
+    # helper: return candidate users filtered by opposite gender preference
 
 class FeedView(generics.ListAPIView):
     """Batch feed: call again after you swipe through 20."""
@@ -40,6 +41,7 @@ class FeedView(generics.ListAPIView):
             .exclude(id__in=swiped_ids)
             .order_by("id")[:20]
         )
+    # Returns a short page of candidates for the swipe feed
 
 class SwipeView(APIView):
     """POST { target_id, action: 'like'|'pass' } → { matched: bool, match_id, next }"""
@@ -79,9 +81,11 @@ class SwipeView(APIView):
         next_payload = FeedUserSerializer(next_user).data if next_user else None
 
         return Response({"matched": matched, "match_id": match_id, "next": next_payload}, status=status.HTTP_200_OK)
+    # Record a swipe, create a Match if mutual like, and return next suggestion
 
 class MatchesListView(generics.ListAPIView):
     serializer_class = MatchSerializer
     def get_queryset(self):
         me = self.request.user
         return Match.objects.filter(Q(user1=me) | Q(user2=me)).order_by("-created_at")
+    # List all matches for the authenticated user

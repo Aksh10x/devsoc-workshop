@@ -43,6 +43,7 @@ def _normalize_likes(value):
         out.append(s.lower())
     # dedupe preserving order
     return list(dict.fromkeys(out))
+    # returns a normalized, lowercase, deduped list of like-tokens
 
 class PublicUserSerializer(serializers.ModelSerializer):
     age = serializers.SerializerMethodField()
@@ -51,6 +52,7 @@ class PublicUserSerializer(serializers.ModelSerializer):
         fields = ["id","username","first_name","last_name","bio","gender","age","birth_date","cover_image_url","likes"]
         read_only_fields = ["id","username","age"]
     def get_age(self, obj): return obj.age
+    # Public-facing user fields used in feed/matches
 
 class MeSerializer(serializers.ModelSerializer):
     age = serializers.SerializerMethodField(read_only=True)
@@ -62,6 +64,7 @@ class MeSerializer(serializers.ModelSerializer):
         read_only_fields = ["id","username","email","age"]
     def validate_likes(self, value): return _normalize_likes(value)
     def get_age(self, obj): return obj.age
+    # Serializer for the authenticated user's profile (read/write)
 
 class RegisterFullSerializer(serializers.ModelSerializer):
     # Auth
@@ -94,6 +97,7 @@ class RegisterFullSerializer(serializers.ModelSerializer):
     def validate_likes(self, value):
         # normalize + enforce rules
         return _normalize_likes(value)
+    # Used by registration endpoint to validate and create full user profile
 
     def create(self, validated_data):
         pwd = validated_data.pop("password")
