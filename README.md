@@ -36,4 +36,7 @@ npm start
 - ✅ Mobile responsive
 - ✅ Sample data included
 
+## Handouts
+[Workshop Handouts (Click Here)](#handouts)
+
 That's it! Start swiping! 💕
