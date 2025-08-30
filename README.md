@@ -12,7 +12,7 @@ source .venv/bin/activate  # Windows: .venv\Scripts\activate
 uv pip install django djangorestframework djangorestframework-simplejwt django-cors-headers pillow
 python manage.py migrate
 python manage.py create_sample_data
-python manage.py runserver
+python manage.py runserver 0.0.0.0:8000
 ```
 
 ### Frontend Setup
