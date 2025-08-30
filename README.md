@@ -5,7 +5,8 @@ Full-stack dating app for DevSoc IIT KGP workshop.
 ## Quick Start
 
 ### How to clone a github repository.
-[Click Here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+[Install git](https://github.com/git-guides/install-git)
+[Clone a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 
 ### Backend Setup
 ```bash
