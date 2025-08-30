@@ -10,6 +10,7 @@ Full-stack dating app for DevSoc IIT KGP workshop.
 3. Run the following code in the terminal
   ```bash
    git clone https://github.com/devsoc-iitkgp/devsoc-workshop
+   cd devsoc-workshop
   ```
 ### Backend Setup
 ```bash
