@@ -15,6 +15,7 @@ Full-stack dating app for DevSoc IIT KGP workshop.
 ### Backend Setup
 ```bash
 cd server/datingapp
+pip install uv
 uv venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 uv pip install django djangorestframework djangorestframework-simplejwt django-cors-headers pillow
