@@ -12,6 +12,8 @@ Full-stack dating app for DevSoc IIT KGP workshop.
    git clone https://github.com/devsoc-iitkgp/devsoc-workshop
    cd devsoc-workshop
   ```
+### Install Python (skip if already installed).
+  [Click here to install python](https://phoenixnap.com/kb/how-to-install-python-3-windows)
 ### Backend Setup
 ```bash
 cd server/datingapp
