@@ -1,4 +1,4 @@
-# DevSoc Dating App Workshop
+# Developers' Society Workshop
 
 Full-stack dating app for DevSoc IIT KGP workshop.
 
