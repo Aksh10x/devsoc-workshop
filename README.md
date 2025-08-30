@@ -37,6 +37,6 @@ npm start
 - ✅ Sample data included
 
 ## Handouts
-[Workshop Handouts (Click Here)](#handouts)
+[Workshop Handouts (Click Here)](https://drive.google.com/drive/folders/16cXk4QnNx0grnPFxJs355LAyatn3Ajhe?usp=sharing)
 
 That's it! Start swiping! 💕
